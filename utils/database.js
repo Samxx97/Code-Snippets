@@ -29,7 +29,7 @@ export async function connectToDatabase() {
             
         } catch (error) {
             console.log(`error in establishing connection ${error}`)
-            return;
+            throw error
         } 
         
         return db.instance

@@ -5,38 +5,22 @@ import useSession from "@hooks/session";
 
 const Home = () => {
 
-    const [state, setState] = useState('fetch')
     const [users, setUsers] = useState([])
     const { session } = useSession()
 
     async function execute() {
-        if (state == 'fetch') {
-            console.log("fetching...")
-            const result = await fetch("/api/users", {
-                method: "GET",
-            });
-            const message = await result.json();
-            setUsers(message.users)
-
-        } else if (state == "create") {
-            console.log("creating new user...")
-             const result = await fetch("/api/users", {
-                method: "POST", 
-                body: JSON.stringify({name: "diana"})
-            });
-            const message = await result.json();
-        }
-        return () => {}
-    }
-
-    async function printProviders() {
-        const providers = await getProviders()
-        console.log("Providers", providers)
-    }
+        console.log("fetching...")
+        const result = await fetch("/api/users", {
+            method: "GET",
+        });
+        const message = await result.json();
+        setUsers(message.users)
+        console.log(message.users)
+    } 
 
     useEffect(() => {
         execute()
-    }, [state])
+    }, [session])
 
     return (
     <>  
