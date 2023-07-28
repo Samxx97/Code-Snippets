@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getSession } from 'next-auth/react';
 
+ // client side implementation of session 
+
 export default function useSession() { 
 
   const [session, setSession] = useState(null)

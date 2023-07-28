@@ -112,7 +112,7 @@
 
 
 .bg_radial-blur {
-  @apply absolute z-[2] w-full h-full top-0 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-transparent to-white
+  @apply absolute z-[2] w-full h-full top-0 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-transparent to-background
 }
 
 .bg_grid {
@@ -178,11 +178,6 @@
 
 .form_input {
   @apply w-full flex rounded-lg mt-2 p-3 text-sm text-gray-500 outline-0;
-}
-
-/* Nav Component */
-.logo_text {
-  @apply max-sm:hidden font-sans font-semibold text-lg text-foreground tracking-wide;
 }
 
 .dropdown {
