@@ -1,4 +1,4 @@
-import { getModel } from "@utils/database";
+import { getModel } from "@lib/database";
 import { Schema } from "mongoose";
 
 const schema = new Schema({

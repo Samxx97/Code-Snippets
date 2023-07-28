@@ -11,17 +11,19 @@ const RootLayout = ( { children, session } ) => {
 
     return (
     <html>
-        <body>
-        <Provider session={session}>
-                <div className="main">
-                    <div className="gradient"/>
-                </div>
+        <body>  
+       
+        <div className='main'>
+            <div className="absolute w-full z-[3] h-full top-0 bg-gradient-to-tr from-indigo-500 to bg-indigo-800 opacity-[0.2] rounded-md"/>
+            <div className='bg_radial-blur'></div>
+            <div className="bg_grid"/>
+        </div>
+             
                 
                 <div className='app'>
                     <NavBar/>
                     {children}
                 </div>
-        </Provider>
         </body>
     </html>
     )
