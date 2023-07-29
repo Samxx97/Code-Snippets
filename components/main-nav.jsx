@@ -8,8 +8,8 @@ const MainNav = () => {
     return (
         <nav className="flex-between justify-between w-full">
             <Link href="/" className="flex justify-center items-center" > 
-                <icons.logo width={60} height={60}/> 
-                <p className="max-sm:hidden font-sans font-semibold text-sm text-foreground tracking-wide"> Code Snippets </p>
+                <icons.logo width={70} height={70} /> 
+                <p className="max-sm:hidden font-sans font-bold text-lg text-foreground tracking-wide mb-3"> Code Snippets </p>
             </Link>
 
         </nav>
