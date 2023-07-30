@@ -4,7 +4,6 @@ import { signIn, signOut } from "next-auth/react"
 import { Button } from "./ui/button";
 
 function UserProfile( { user } ) {
-
     return (
         <div className="flex gap-3 md:gap-5"> 
             { user? (
@@ -18,7 +17,7 @@ function UserProfile( { user } ) {
                             height={26}
                             className="rounded-full"
                         />
-                        <p className="font-semibold whitespace-nowrap"> {user.name} </p>
+                        <p className="font-terminus text-lg font-bold whitespace-nowrap"> {user.name} </p>
                     </Button>
             ) : (
                 <button className="black_btn" onClick={(e) => { e.preventDefault(); signIn()}}> Sign in </button>
