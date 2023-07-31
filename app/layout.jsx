@@ -21,7 +21,9 @@ const RootLayout = ( { children, session } ) => {
             </div>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                 <Header/> 
-
+                <div className='container py-2 z-0 flex items-center justify-center'>
+                    {children}
+                </div>
             </ThemeProvider>
         </body>
     </html>
