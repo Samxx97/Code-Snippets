@@ -2,7 +2,7 @@ import '@styles/globals.css';
 import NavBar from "@components/main-nav";
 import Header from '@components/header';
 import { ThemeProvider } from "@/components/theme-provider"
-import { terminus, dyslexic } from "../lib/fonts"
+import { terminus, nerdy, dyslexic } from '@lib/fonts';
 
 export const metadata = { 
     title: "code-snippets",
@@ -12,7 +12,7 @@ export const metadata = {
 const RootLayout = ( { children, session } ) => {
 
     return (
-    <html lang='en' className={`${terminus.variable}`}>
+    <html lang='en' className={`${terminus.variable} ${nerdy.variable} ${dyslexic.variable}`}>
         <body className='relative flex min-h-screen flex-col'>  
             <div className='main'>
                 {/*<div className="absolute w-full z-[3] h-full top-0 bg-gradient-to-tr from-indigo-400 to-blue-400 opacity-[0.2] rounded-md"/>*/}

@@ -11,7 +11,7 @@ const MainNav = ( { items } ) => {
         <nav className="flex items-center w-full max-h-14">
             <Link href="/" className="flex justify-center items-center mr-8" > 
                 <icons.logo width={60} height={60} /> 
-                <p className="max-sm:hidden font-terminus font-bold text-xl text-foreground tracking-wide">Code Snippets</p>
+                <p className="max-sm:hidden font-terminus italic font-bold text-xl text-foreground tracking-wide">Code Snippets</p>
             </Link>
             <div className="flex justify-center items-center gap-3">
                 { items.map((item) => 
@@ -19,7 +19,7 @@ const MainNav = ( { items } ) => {
                         <Link 
                          href={item.href} 
                          className={cn(
-                            "flex items-center font-terminus font-bold text-lg text-foreground p-4 hover:bg-muted border-b-2 border-b-transparent",
+                            "flex items-center font-dyslexic text-sm text-foreground p-4 hover:bg-muted border-b-2 border-b-transparent",
                             isPathActive(currentPath, item.href) &&  "border-b-primary text-primary"
                          )}>
                           {item.title}

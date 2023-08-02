@@ -17,7 +17,9 @@ module.exports = {
       },
       extend: {
         fontFamily: {
-          terminus: ['var(--font-terminus)']
+          terminus: ['var(--font-terminus)'],
+          nerdy: ['var(--font-nerdy)'],
+          dyslexic: ['var(--font-dyslexic)']
         },
         backgroundImage: {
           'grid-pattern': "url('/assets/images/grid.svg')",
