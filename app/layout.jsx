@@ -3,6 +3,7 @@ import NavBar from "@components/main-nav";
 import Header from '@components/header';
 import { ThemeProvider } from "@/components/theme-provider"
 import { terminus, nerdy, dyslexic } from '@lib/fonts';
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata = { 
     title: "code-snippets",
@@ -20,6 +21,7 @@ const RootLayout = ( { children, session } ) => {
                 <div className="bg_grid"/>
             </div>
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+                <NextTopLoader color='#a37cf0'/>
                 <Header/> 
                 <div className='container py-2 z-0 flex items-center justify-center'>
                     {children}
