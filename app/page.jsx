@@ -1,11 +1,10 @@
 'use client'
 import { useEffect, useState } from "react";
-import { getProviders } from "next-auth/react"
-import useSession from "@hooks/session";
+// import useSession from "@hooks/session";
 
 const Home = () => {
 
-    const [users, setUsers] = useState([])
+    /*const [users, setUsers] = useState([])
     const { session } = useSession()
 
     async function execute() {
@@ -20,7 +19,7 @@ const Home = () => {
 
     useEffect(() => {
         execute()
-    }, [session])
+    }, [session])*/
 
     return (
     <>  
