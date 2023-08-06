@@ -10,6 +10,5 @@ export function isPathActive(currentPath: string, path: string) {
 }
 
 export function enumToArray<T extends { [index: string]: string } >(enumType: T): { key: keyof T, value: T[keyof T] }[] {
-  return Object.keys(enumType).map((key) => ({ key,
-                                               value: enumType[key as keyof T] as T[keyof T] } ));
+  return Object.keys(enumType).map((key) => ({ key, value: enumType[key as keyof T] as T[keyof T] } ));
 }

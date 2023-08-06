@@ -23,9 +23,7 @@ import {
     SelectValue,
   } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-
 import { enumToArray } from "@lib/utils"
-
 
 export function AddSnippetForm() {
 
@@ -38,8 +36,8 @@ export function AddSnippetForm() {
         mode: "onSubmit"
     })
 
-    function onSubmit(values: snippet) {
-        console.log(values)
+    async function onSubmit(values: snippet) {
+       console.log(values)
     }
 
     return (
@@ -65,7 +63,7 @@ export function AddSnippetForm() {
                                     </SelectContent>
                                 </Select>
                                 <FormDescription className="font-dyslexic text-muted-foreground text-xs">
-                                        choose your programming language
+                                        select your programming language
                                 </FormDescription>
                         </FormItem>
                     )}

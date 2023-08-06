@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
-import userModel from "@models/user"
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { prisma } from "@lib/db"
 
 const handler = NextAuth({
   providers: [
@@ -11,32 +12,6 @@ const handler = NextAuth({
   ],
 
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      try {
-
-        const model = await userModel()
-        const userExists = Boolean(await model.find({name: user.email}))
-  
-        if (userExists) {  //  do not save if user already exists in the database
-          console.log("user already exists!")
-          return true;
-        }
-        const {id, ...userToSave} = user;
-
-        // create new user with the user info
-        await model.create(userToSave).then((user) => {
-          console.log(`created a new User! ${user}`)
-          return true
-        });
-
-        return true
-      } catch(e) {
-        console.log(e)
-        return Promise.reject(new Error(e))
-      }
-     
-    },
-
     async jwt({ user, token }) {
       //   update token if user is returned
       if (user) {
@@ -49,7 +24,12 @@ const handler = NextAuth({
     async session({ session, user, token }) {
         return session
       },
-  }
+  },
+  adapter: PrismaAdapter(prisma),
+
+  session: {
+    strategy: 'jwt',
+  },
 })
 
 export { handler as GET, handler as POST, NextAuth as nextAuthOptions }
