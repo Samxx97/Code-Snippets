@@ -40,6 +40,16 @@ model User {
   accounts      Account[]
   sessions      Session[]
 }
+
+model Snippet {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  code String 
+  language String
+  created_at DateTime?
+
+}
+
 model VerificationToken {
   identifier String   @id @default(auto()) @map("_id") @db.ObjectId
   token      String   @unique

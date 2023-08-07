@@ -1,5 +1,6 @@
 "use client"
 import React from "react"
+import { useState } from "react"
 
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -24,8 +25,11 @@ import {
   } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { enumToArray } from "@lib/utils"
+import createNewSnippet from "../actions"
+import { Icons } from "@components/icons"
 
 export function AddSnippetForm() {
+    const [isLoading, setLoading] = useState(false);
 
     const form  = useForm<snippet>({
         resolver: zodResolver(snippetSchema),
@@ -36,8 +40,16 @@ export function AddSnippetForm() {
         mode: "onSubmit"
     })
 
-    async function onSubmit(values: snippet) {
-       console.log(values)
+    async function onSubmit(snippet: snippet) {
+        try {
+            setLoading(true)
+            const result =  await createNewSnippet(snippet)
+            console.log(result)
+            
+        } catch (error) {
+            console.log(error)
+        }
+        setLoading(false)
     }
 
     return (
@@ -85,7 +97,9 @@ export function AddSnippetForm() {
                     )}
                 />
                 <Button type="submit" variant="custom">
-                        Save Snippet
+                    { isLoading && 
+                    <Icons.spinner className="animate-spin h-4 w-4 mr-2"/>}
+                    Save Snippet
                 </Button>
             </form>
         </Form>

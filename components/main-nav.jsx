@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link";
-import { icons } from "./icons"; 
+import { Icons } from "./icons"; 
 import { cn, isPathActive } from "@lib/utils";
 import { usePathname } from 'next/navigation'
 
@@ -10,7 +10,7 @@ const MainNav = ( { items } ) => {
     return (
         <nav className="flex items-center w-full max-h-14">
             <Link href="/" className="flex justify-center items-center mr-8" > 
-                <icons.logo width={60} height={60} /> 
+                <Icons.logo className="dark:invert invert-0 w-[60px] h-[60px]"/> 
                 <p className="max-sm:hidden font-terminus italic font-bold text-xl text-foreground tracking-wide">Code Snippets</p>
             </Link>
             <div className="flex justify-center items-center gap-3">
