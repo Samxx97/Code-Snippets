@@ -31,6 +31,7 @@
     "nextjs-toploader": "^1.4.2",
     "postcss": "8.4.26",
     "prisma": "^5.1.1",
+    "prismjs": "^1.29.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
@@ -40,6 +41,7 @@
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/prismjs": "^1.26.0",
     "@types/react": "18.2.17"
   }
 }

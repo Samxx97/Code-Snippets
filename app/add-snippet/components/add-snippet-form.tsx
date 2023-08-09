@@ -96,7 +96,7 @@ export function AddSnippetForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit" variant="custom">
+                <Button type="submit" variant="custom" className="font-bold font-dyslexic text-background dark:text-background">
                     { isLoading && 
                     <Icons.spinner className="animate-spin h-4 w-4 mr-2"/>}
                     Save Snippet

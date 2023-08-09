@@ -19,7 +19,7 @@ const MainNav = ( { items } ) => {
                         <Link 
                          href={item.href} 
                          className={cn(
-                            "flex items-center font-dyslexic text-sm text-foreground p-4 hover:bg-muted border-b-2 border-b-transparent",
+                            "flex items-center font-dyslexic text-sm text-foreground p-4 hover:text-primary hover:bg-muted border-b-2 border-b-transparent",
                             isPathActive(currentPath, item.href) &&  "border-b-primary text-primary"
                          )}>
                           {item.title}
