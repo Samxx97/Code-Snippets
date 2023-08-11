@@ -12,6 +12,8 @@ import { getCurrentUser } from '@lib/session'
   try {
     const result = await prisma.snippet.create({
       data: {
+        name: "test",
+        description: "test",
         ...data
       },
     })

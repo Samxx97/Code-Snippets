@@ -42,8 +42,9 @@ model User {
 }
 
 model Snippet {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
+  id String @id @map("_id") @default(cuid())
+  name String
+  description String
   code String 
   language String
   created_at DateTime?
