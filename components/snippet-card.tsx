@@ -28,8 +28,8 @@ let ExampleCode = `function VideoList({ videos, emptyHeading }) {
 const Header = () => {
   return (
     <div className="space-y-1 px-4 pt-4">
-      <h1 className="text-lg font-bold font-dyslexic italic text-primary">Display Videos</h1> {/* Title of Snippet*/}
-      <p className="text-xs text-muted-foreground font-dyslexic"> {/* Description of Snippet*/}
+      <h1 className="text-xl font-bold stroke-black font-dyslexic italic text-secondary dark:text-primary">Display Videos</h1> {/* Title of Snippet*/}
+      <p className="text-sm text-muted-foreground font-bold font-dyslexic"> {/* Description of Snippet*/}
           a snippet for displaying videos
       </p>
     </div>
@@ -49,13 +49,16 @@ const Snippet = ({ code }: { code: string }) => {
 const Footer = () => {
   return (
     <div className="p-3 flex">
-      <div className="flex mr-2 text-xs font-bold font-dyslexic text-primary flex-1 items-center justify-center"> footer</div>
+      <div className="flex mr-2 text-2xl font-bold font-dyslexic flex-1 items-center justify-center rounded-full gap-4"> 
+          <i className="nf nf-seti-python text-secondary dark:text-primary"/>
+      </div>
       <Button type="submit" variant="custom" className="relative justify-start w-2/3 rounded-md">
         <h1 className="font-bold italic font-dyslexic text-background"> Practice Snippet</h1>
         <ArrowRight
         size="20"
         className="absolute -translate-y-1/2 right-4 top-1/2 invert dark:invert"
         />
+
       </Button>
     </div>
   )
