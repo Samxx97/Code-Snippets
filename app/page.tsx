@@ -1,24 +1,22 @@
 'use client'
 import { useEffect, useState } from "react";
 import SnippetCard from "@components/snippet-card"
+import snippets from "@prisma/data/snippets"
+import React from "react";
 
 const Home = () => {
 
     return (
     <>  
-        <section className="w-[90%] py-4 gap-6 grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
-            <SnippetCard/>
+        <section className="flex flex-col flex-wrap">
+            <div className=" columns-3">
+            {snippets.map((snippet) => (
+                <SnippetCard {...snippet}/>
+            ))}
+            </div>
+          
+            
+           
 
         </section>        
      </>
