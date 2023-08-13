@@ -28,7 +28,7 @@ const CodeBlock = ({ code, language }: {
    language: string
   }) => {
   return (
-    <pre className="p-5 !overflow-hidden !hover:overflow-scroll !bg-transparent w-[340px]"> 
+    <pre className="p-5 !overflow-hidden !hover:overflow-scroll !bg-transparent w-[340px] max-h-[250px]"> 
       <code className={cn(
         "!font-terminus !font-bold !text-xs twilight",
         language && `language-${language}`

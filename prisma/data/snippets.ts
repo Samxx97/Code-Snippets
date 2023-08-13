@@ -5,7 +5,23 @@ const snippets: {
     language: string
 
 }[] = [
-   {
+    {
+        name: "Encryption Base64",
+        description: "a snippet showing encryption of messages with base64",
+        code: `import base64
+
+        def base64(text):
+            if isinstance(text, str):
+                text = text.encode('utf-8')
+            encrypted_bytes = base64.b64encode(text)
+            encrypted_text = encrypted_bytes.decode('utf-8')
+            return encrypted_text
+        
+        input = "Type this if you like trans males."
+        message = base64(input)
+        print("Encrypted message:", message)`,
+        language: "python"
+    }, {
         name: "Display Videos",
         description: "React app for displaying videos with count",
         code: `function VideoList({ videos, emptyHeading }) {
@@ -45,22 +61,6 @@ const snippets: {
             }
             }`,
         language: "java"
-    }, {
-        name: "Encryption Base64",
-        description: "a snippet showing encryption of messages with base64",
-        code: `import base64
-
-        def base64(text):
-            if isinstance(text, str):
-                text = text.encode('utf-8')
-            encrypted_bytes = base64.b64encode(text)
-            encrypted_text = encrypted_bytes.decode('utf-8')
-            return encrypted_text
-        
-        input = "Type this if you like trans males."
-        message = base64(input)
-        print("Encrypted message:", message)`,
-        language: "python"
     }, {
         name: "Object oriented",
         description: "object oriented snippet code in php",

@@ -1,25 +1,33 @@
-'use client'
-import { useEffect, useState } from "react";
 import SnippetCard from "@components/snippet-card"
-import snippets from "@prisma/data/snippets"
-import React from "react";
-import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
+import MasonryGrid from "@components/masonry"
+import prisma from "@lib/db"
 
-const Home = () => {
+console.log("server component")
+
+export const revalidate = "force-cache"
+
+async function getSnippets() {
+    let data;
+    try {
+        data = await prisma.snippet.findMany({})
+    } catch (e) {
+        console.log("failed to connect to database")
+        console.log(e)
+        return []
+    }
+    return data
+}
+
+async function Home()  {
+    const snippets =  await getSnippets()
 
     return (
-    <>  
-    <div className="w-[85%] my-4">
-    <Masonry columnsCount={3}>
-            {snippets.map((snippet) => (
-                <SnippetCard {...snippet}/>
+        <MasonryGrid>
+           {snippets.map((snippet) => (
+            <SnippetCard {...snippet}/>
             ))}
-    </Masonry>     
-
-    </div>
-          
-     </>
-
+        </MasonryGrid>
+        
     )
 }
 
