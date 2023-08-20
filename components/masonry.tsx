@@ -11,8 +11,8 @@ interface props  {
 
 const MasonryGrid = ({ children }: props) => {
     return (
-        <div className="w-[80%] my-4">
-            <Masonry columnsCount={3}>
+        <div className="w-[82%] my-4">
+            <Masonry columnsCount={3} gutter="15px">
                     {children}
             </Masonry>     
         </div>

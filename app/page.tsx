@@ -2,8 +2,6 @@ import SnippetCard from "@components/snippet-card"
 import MasonryGrid from "@components/masonry"
 import prisma from "@lib/db"
 
-console.log("server component")
-
 export const revalidate = "force-cache"
 
 async function getSnippets() {

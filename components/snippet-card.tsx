@@ -7,6 +7,12 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react";
 import { cn } from "@lib/utils";
+import config from 'prismjs/components.js';
+import getLoader from 'prismjs/dependencies.js';
+import "prismjs/components/prism-python.js"
+import "prismjs/components/prism-java.js"
+import "prismjs/components/prism-typescript.js"
+
 
 const Header = ({ name, description }: { 
   name: string
@@ -28,9 +34,11 @@ const CodeBlock = ({ code, language }: {
    language: string
   }) => {
   return (
-    <pre className="p-5 !overflow-hidden !hover:overflow-scroll !bg-transparent w-[340px] max-h-[250px]"> 
+    <pre className={cn("p-5 !overflow-hidden !hover:overflow-scroll !bg-transparent w-[340px] max-h-[250px]",
+    language && `language-${language}`  
+    )}> 
       <code className={cn(
-        "!font-terminus !font-bold !text-xs twilight",
+        "!font-bold !text-xs twilight",
         language && `language-${language}`
       )}
       >
