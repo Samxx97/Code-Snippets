@@ -1,17 +1,13 @@
 "use client"
 
 import React, { useEffect } from "react"
-import Prism from "prismjs";
 import "prismjs/themes/prism-tomorrow.css";
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react";
 import { cn } from "@lib/utils";
-import config from 'prismjs/components.js';
-import getLoader from 'prismjs/dependencies.js';
-import "prismjs/components/prism-python.js"
-import "prismjs/components/prism-java.js"
-import "prismjs/components/prism-typescript.js"
+import Prism from "prismjs";
+import loadLanguages from "@lib/prism"
 
 
 const Header = ({ name, description }: { 
@@ -80,10 +76,12 @@ interface CardProps {
 }
 
 export default function SnippetCard({ name, description, code, language  }: CardProps) {
-
     useEffect(() => {
+      loadLanguages(language).then(() => {
         Prism.highlightAll();
-    }, [])
+      })
+        
+    }, [language])
 
     return (
        <div className="flex items-start justify-start mb-4 cursor-pointer w-[340px]">
