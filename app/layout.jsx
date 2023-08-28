@@ -7,7 +7,7 @@ import NextTopLoader from 'nextjs-toploader';
 
 export const metadata = { 
     title: "code-snippets",
-    description: "Share favorite Code Snippets of various languages"
+    description: "Share & Practice favorite Code Snippets of various languages"
 }
 
 const RootLayout = ( { children, session } ) => {

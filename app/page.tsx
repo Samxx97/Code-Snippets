@@ -1,30 +1,24 @@
+"use client"
 import SnippetCard from "@components/snippet-card"
 import MasonryGrid from "@components/masonry"
-import prisma from "@lib/db"
-
 export const revalidate = "force-cache"
+import useInfiniteData from "@hooks/useInfiniteData"
 
-async function getSnippets() {
-    let data;
-    try {
-        data = await prisma.snippet.findMany({})
-    } catch (e) {
-        console.log("failed to connect to database")
-        console.log(e)
-        return []
-    }
-    return data
-}
-
-async function Home()  {
-    const snippets =  await getSnippets()
+ function Home()  {
+    
+     const { data, lastElementRef } = useInfiniteData()  
 
     return (
-        <MasonryGrid>
-           {snippets.map((snippet) => (
-            <SnippetCard {...snippet}/>
-            ))}
-        </MasonryGrid>
+            <MasonryGrid>
+            {data.map((snippet, index) => (
+                data.length === index + 1 ? 
+                <div ref={lastElementRef}>
+                    <SnippetCard {...snippet}/>
+                </div>
+                 :  <SnippetCard {...snippet}/>
+
+                ))}
+            </MasonryGrid>
         
     )
 }

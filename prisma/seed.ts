@@ -4,17 +4,19 @@ const prisma = new PrismaClient()
 
 async function main(){
     let results: Promise<Snippet>[] = []
+    let Id = 0;
     for (const snippet of snippets) {
 
         let result =  prisma.snippet.upsert({
-            where: { id: `seed-${snippet.name}` },
+            where: { id: Id },
             create: {
-                id: `seed-${snippet.name}`,
+                id: Id,
                 ...snippet
             },
             update: snippet
         })
         results.push(result)
+        Id++;
     }
     return Promise.all(results)
 }

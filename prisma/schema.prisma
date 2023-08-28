@@ -42,7 +42,7 @@ model User {
 }
 
 model Snippet {
-  id String @id @map("_id") @default(cuid())
+  id   Int  @id @map("_id")
   name String
   description String
   code String 

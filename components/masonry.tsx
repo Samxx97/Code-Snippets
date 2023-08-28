@@ -3,8 +3,6 @@
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import React from "react";
 
-console.log("client component ")
-
 interface props  { 
     children: React.ReactNode
  }
