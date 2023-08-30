@@ -10,32 +10,41 @@ export default function useInfiniteData() {
 
     const [cursor, setCursor] = useState<number | null | undefined>(null)
     const [data, setData] = useState<Snippet[]>([])
-    const { isIntersecting, lastElementRef} = useIsInViewPort()
     const [InitialDataLoaded, setInitialDataLoaded] = useState(false)
-
+    const [IsLoading, setIsLoading] = useState(false)
+    const { isIntersecting, lastElementRef} = useIsInViewPort()
+    
     useEffect(() => {
         if (!InitialDataLoaded) {
+            setIsLoading(true)
             fetchNextPage(cursor, REDCORDS_PER_PAGE).then((data: Snippet[]) => {
                 setData(data);
                 if(data.length != 0) {
                     setCursor(data[data?.length - 1]?.id)
                 }
                 setInitialDataLoaded(true)
+                setIsLoading(false)
+                
             })
         }
         if (isIntersecting && InitialDataLoaded) {
+            setIsLoading(true)
             fetchNextPage(cursor, REDCORDS_PER_PAGE).then((newData: Snippet[]) => {
                 setData([...data, ...newData]) // concatenate old and new data
                 if(newData.length != 0) {
                     setCursor(newData[newData?.length - 1]?.id)  // get a cursor to the last record
                 }
+                setIsLoading(false)
+            
             })
         }
     }, [InitialDataLoaded, isIntersecting]);
 
     return {
         data,
-        lastElementRef
+        lastElementRef,
+        IsLoading,
+        InitialDataLoaded,
     }
  
 }

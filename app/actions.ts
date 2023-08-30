@@ -2,6 +2,7 @@
 
 import prisma from '@lib/db'
 import { Prisma, type Snippet } from "@prisma/client";
+import { stall } from '@lib/utils';
 
 interface PrismaRequest {
     skip?: number,
@@ -33,6 +34,7 @@ interface PrismaRequest {
                     id: Prisma.SortOrder.asc
                 },
             }
+            // await stall()
             newData = await prisma.snippet.findMany(requestData)
         } catch (e) {
             console.log(`failed to connect to database ${e}`)
