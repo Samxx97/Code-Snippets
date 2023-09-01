@@ -1,7 +1,7 @@
 "use client"
 import { type Snippet } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { fetchNextPage } from "../app/actions"
+import { fetchNextPage, getTotalRecordCount } from "../app/actions"
 import useIsInViewPort from "./useIsInViewPort"
 
 const REDCORDS_PER_PAGE = 6;
@@ -12,6 +12,7 @@ export default function useInfiniteData() {
     const [data, setData] = useState<Snippet[]>([])
     const [InitialDataLoaded, setInitialDataLoaded] = useState(false)
     const [IsLoading, setIsLoading] = useState(false)
+    const [hasMore, setHasMore] = useState(true)
     const { isIntersecting, lastElementRef} = useIsInViewPort()
     
     useEffect(() => {
@@ -24,7 +25,6 @@ export default function useInfiniteData() {
                 }
                 setInitialDataLoaded(true)
                 setIsLoading(false)
-                
             })
         }
         if (isIntersecting && InitialDataLoaded) {
@@ -37,14 +37,26 @@ export default function useInfiniteData() {
                 setIsLoading(false)
             
             })
+         
         }
     }, [InitialDataLoaded, isIntersecting]);
+
+    useEffect(() => {
+        getTotalRecordCount("snippet").then((totalRecordCount) => {
+            if (data.length === totalRecordCount) {
+                setHasMore(false)
+                return;
+            }
+            setHasMore(true)
+        })
+    }, [data])
 
     return {
         data,
         lastElementRef,
         IsLoading,
         InitialDataLoaded,
+        hasMore,
     }
  
 }

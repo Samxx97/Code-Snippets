@@ -1,8 +1,9 @@
 "use server"
 
 import prisma from '@lib/db'
-import { Prisma, type Snippet } from "@prisma/client";
+import { Prisma, type Snippet, PrismaClient } from "@prisma/client";
 import { stall } from '@lib/utils';
+import { TypeOf } from 'zod';
 
 interface PrismaRequest {
     skip?: number,
@@ -42,4 +43,10 @@ interface PrismaRequest {
         }
         return newData;
 
+}
+
+export async function getTotalRecordCount(model: string): Promise<Number> {
+     // @ts-ignore 
+    var recordsCount = await prisma[model as keyof typeof prisma].count()
+    return recordsCount
 }

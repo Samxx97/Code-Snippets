@@ -1,14 +1,15 @@
 "use client"
-import SnippetCard from "@components/snippet-card"
+import SnippetCard from "@components/snippet-card"  
 import MasonryGrid from "@components/masonry"
 export const revalidate = "force-cache"
 import useInfiniteData from "@hooks/useInfiniteData"
 import { Skeleton } from "@/components/ui/skeleton"
+import React from "react"
 
 
  function Home()  {
     
-     const { data, lastElementRef, IsLoading, InitialDataLoaded} = useInfiniteData()  
+     const { data, lastElementRef, IsLoading, InitialDataLoaded, hasMore} = useInfiniteData()  
 
     return (
             <MasonryGrid>
@@ -20,7 +21,7 @@ import { Skeleton } from "@/components/ui/skeleton"
                             <SnippetCard {...snippet}/>
                         </div>
                         :  <SnippetCard {...snippet}/> ))}
-                {IsLoading && InitialDataLoaded && [1, 2, 3].map((_) => ( <Skeleton className="h-80 w-[350px]" /> ))}    
+                {IsLoading && InitialDataLoaded && hasMore && [1, 2, 3].map((_) => ( <Skeleton className="h-80 w-[350px]" /> ))}    
             </MasonryGrid>
         
     )
