@@ -12,8 +12,7 @@ export default function useSession() {
       const session = await getSession();
       setSession(session)
     }
-    console.log("retrieving session!")
-    console.log(session)
+
     retrieveSession()
     return () => {
 

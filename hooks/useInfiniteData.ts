@@ -14,6 +14,16 @@ export default function useInfiniteData() {
     const [IsLoading, setIsLoading] = useState(false)
     const [hasMore, setHasMore] = useState(true)
     const { isIntersecting, lastElementRef} = useIsInViewPort()
+
+    useEffect(() => {
+        getTotalRecordCount("snippet").then((totalRecordCount) => {
+            if (data.length === totalRecordCount) {
+                setHasMore(false)
+                return;
+            }
+            setHasMore(true)
+        })
+    }, [data])
     
     useEffect(() => {
         if (!InitialDataLoaded) {
@@ -41,15 +51,6 @@ export default function useInfiniteData() {
         }
     }, [InitialDataLoaded, isIntersecting]);
 
-    useEffect(() => {
-        getTotalRecordCount("snippet").then((totalRecordCount) => {
-            if (data.length === totalRecordCount) {
-                setHasMore(false)
-                return;
-            }
-            setHasMore(true)
-        })
-    }, [data])
 
     return {
         data,
