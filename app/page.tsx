@@ -13,8 +13,8 @@ import React from "react"
 
     return (
             <MasonryGrid>
-                {!InitialDataLoaded? [10, 64, 64, 64, 64, 10, 64, 10, 64].map((num, _) => (
-                    <Skeleton className={`h-${num}  w-[350px]`} />
+                {!InitialDataLoaded? ["sm", "lg", "lg", "lg", "lg", "sm", "lg", "sm", "lg"].map((size, _) => (
+                    <Skeleton className={ size === "sm" ? `h-10 w-[350px]` : `h-64 w-[350px]`} />
                 )) : data.map((snippet, index) => (
                         data.length === index + 1 ? 
                         <div ref={lastElementRef}>

@@ -35,7 +35,7 @@ interface PrismaRequest {
                     id: Prisma.SortOrder.asc
                 },
             }
-            // await stall()
+            await stall()
             newData = await prisma.snippet.findMany(requestData)
         } catch (e) {
             console.log(`failed to connect to database ${e}`)
