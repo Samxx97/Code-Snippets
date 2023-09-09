@@ -116,7 +116,7 @@
 }
 
 .bg_grid {
-  @apply bg-grid-pattern absolute z-[1] w-full h-full top-0 opacity-[0.5] dark:invert-0 invert
+  @apply bg-grid-pattern absolute z-[1] w-full h-full top-0 opacity-[1] dark:invert-0 invert
 }
 
 
