@@ -3,36 +3,36 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("MONGO_URI")
+  provider = "postgresql"
+  url      = env("DB_URI")
 }
 
 model Account {
-  id                String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String @db.ObjectId
+  id                Int  @id @default(autoincrement()) @map("_id")
+  userId            Int
   type              String
   provider          String
   providerAccountId String
-  refresh_token     String? @db.String
-  access_token      String? @db.String
+  refresh_token     String?
+  access_token      String?
   expires_at        Int?
   refresh_token_expires_in Int?
   token_type        String?
   scope             String?
-  id_token          String? @db.String
+  id_token          String?
   session_state     String?
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([provider, providerAccountId])
 }
 model Session {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  id           Int   @id @default(autoincrement()) @map("_id")
   sessionToken String   @unique
-  userId       String   @db.ObjectId
+  userId       Int   
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  id            Int    @id @default(autoincrement()) @map("_id")
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -42,7 +42,7 @@ model User {
 }
 
 model Snippet {
-  id   Int  @id @map("_id")
+  id   Int  @id @default(autoincrement()) @map("_id")
   name String
   description String
   code String 
@@ -52,7 +52,7 @@ model Snippet {
 }
 
 model VerificationToken {
-  identifier String   @id @default(auto()) @map("_id") @db.ObjectId
+  identifier Int   @id @default(autoincrement()) @map("_id")
   token      String   @unique
   expires    DateTime
   @@unique([identifier, token])

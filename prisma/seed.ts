@@ -10,7 +10,6 @@ async function main(){
         let result =  prisma.snippet.upsert({
             where: { id: Id },
             create: {
-                id: Id,
                 ...snippet
             },
             update: snippet

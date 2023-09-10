@@ -4,7 +4,7 @@ import prisma from '@lib/db'
 import { getCurrentUser } from '@lib/session'
 
  async function createNewSnippet(data: any) {
-
+  
   const user = await getCurrentUser();
   if (!user) {
     throw new Error("you are unauthorized to do this action")
