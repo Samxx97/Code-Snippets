@@ -44,7 +44,6 @@ export function AddSnippetForm() {
         try {
             setLoading(true)
             const result =  await createNewSnippet(snippet)
-            console.log(result)
             
         } catch (error) {
             console.log(error)

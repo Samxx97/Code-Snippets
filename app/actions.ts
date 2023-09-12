@@ -3,7 +3,6 @@
 import prisma from '@lib/db'
 import { Prisma, type Snippet, PrismaClient } from "@prisma/client";
 import { stall } from '@lib/utils';
-import { TypeOf } from 'zod';
 
 interface PrismaRequest {
     skip?: number,
@@ -17,36 +16,42 @@ interface PrismaRequest {
 }
 
  export async function fetchNextPage(cursor: number | null | undefined, num_of_records: number): Promise<Snippet[]> {
-    let newData: Snippet[];
         try {
-            const requestData: PrismaRequest = 
-            cursor ? {  // only skip cursor record if cursor is unDefined
-                skip: 1,
-                take: num_of_records,
-                cursor: {
-                    id: cursor,
-                },
-                orderBy:{
-                    id: Prisma.SortOrder.asc
-                },
-            } : {
+            const requestData: PrismaRequest = { 
                 take: num_of_records,
                 orderBy:{
                     id: Prisma.SortOrder.asc
                 },
             }
+            if (cursor) {  // if cursor is defined skip the cursor record
+                requestData.cursor = {
+                    id: cursor,
+                }
+                requestData.skip = 1;
+            }
             // await stall()
-            newData = await prisma.snippet.findMany(requestData)
+            const newData =  await prisma.snippet.findMany(requestData)
+            return newData
         } catch (e) {
-            console.log(`failed to connect to database ${e}`)
+            console.log(`error fetching from database ${e}`)
             return []
         }
-        return newData;
 
 }
 
-export async function getTotalRecordCount(model: string): Promise<Number> {
-     // @ts-ignore 
-    var recordsCount = await prisma[model as keyof typeof prisma].count()
-    return recordsCount
+interface PrismaModel<_> {
+    count(): Promise<number>;
+}
+
+export async function getTotalRecordCount<T extends keyof PrismaClient>(
+    modelName: T
+): Promise<number> {
+    try {
+        const prismaModel = prisma[modelName] as PrismaModel<PrismaClient[T]>;
+        const recordsCount = await prismaModel.count();
+        return recordsCount;
+    } catch (e) {
+        console.log(`Failed to fetch record count for model ${modelName as string}: ${e}`);
+        return -1;
+    }
 }
