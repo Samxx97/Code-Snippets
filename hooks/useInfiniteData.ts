@@ -15,6 +15,15 @@ export default function useInfiniteData() {
     const [hasMore, setHasMore] = useState(true)
     const { isIntersecting, lastElementRef} = useIsInViewPort()
 
+    const fetchData = async () => {
+        setIsLoading(true);
+        const newData = await fetchNextPage(cursor, REDCORDS_PER_PAGE);
+        setData((prevData) => [...prevData, ...newData]); // concatenate old and new data
+        if(newData.length != 0) {
+            setCursor(newData[newData?.length - 1].id) // set cursor to the last record
+        }
+    } 
+    
     useEffect(() => {
         getTotalRecordCount("snippet").then((totalRecordCount) => {
             if (data.length === totalRecordCount) {
@@ -24,28 +33,20 @@ export default function useInfiniteData() {
             setHasMore(true)
         })
     }, [data])
-    
+
     useEffect(() => {
-        if (!InitialDataLoaded) {
-            setIsLoading(true)
-            fetchNextPage(cursor, REDCORDS_PER_PAGE).then((data: Snippet[]) => {
-                setData(data);
-                if(data.length != 0) {
-                    setCursor(data[data?.length - 1]?.id)
-                }
+        if(!InitialDataLoaded) {
+            fetchData().then(() => {
                 setInitialDataLoaded(true)
                 setIsLoading(false)
             })
         }
+    }, [InitialDataLoaded])
+    
+    useEffect(() => {
         if (isIntersecting && InitialDataLoaded) {
-            setIsLoading(true)
-            fetchNextPage(cursor, REDCORDS_PER_PAGE).then((newData: Snippet[]) => {
-                setData([...data, ...newData]) // concatenate old and new data
-                if(newData.length != 0) {
-                    setCursor(newData[newData?.length - 1]?.id)  // get a cursor to the last record
-                }
+            fetchData().then(() => {
                 setIsLoading(false)
-            
             })
          
         }
