@@ -10,9 +10,11 @@ interface props  {
 const MasonryGrid = ({ children }: props) => {
     return (
         <div className="w-[82%] my-4">
-            <Masonry columnsCount={3} gutter="15px">
-                    {children}
-            </Masonry>     
+             <ResponsiveMasonry columnsCountBreakPoints={{400: 1, 950: 2, 1400: 3}}>
+                <Masonry columnsCount={3} gutter="15px">
+                        {children}
+                </Masonry>  
+            </ResponsiveMasonry>   
         </div>
         )
 
