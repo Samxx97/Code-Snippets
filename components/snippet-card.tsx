@@ -52,7 +52,7 @@ const Footer = ({ language }: {
       <div className="flex mr-2 text-2xl font-bold font-dyslexic flex-1 items-center justify-center rounded-full gap-4"> 
           <i className=
           {cn(
-            "text-secondary dark:text-primary",
+            "text-secondary dark:violet-100",
              language && `nf nf-seti-${language}`
           )}/>
       </div>
@@ -85,7 +85,7 @@ export default function SnippetCard({ name, description, code, language  }: Card
 
     return (
        <div className="flex items-start justify-start mb-4 cursor-pointer w-[340px]">
-        <div className="border-2 border-warning border-slate-500 dark:border-slate-700 shadow-slate-700 dark:shadow-slate-700 shadow-md rounded-lg dark:bg-slate-900/90 bg-slate-50 hover:shadow-xl">
+        <div className="border-2 border-warning border-slate-500 dark:border-slate-700 shadow-slate-700 dark:shadow-slate-700 shadow-md rounded-lg dark:bg-slate-950 bg-slate-50 hover:shadow-xl">
           <Header name={name} description={description}/>
           <Separator className="my-4"/>
           <CodeBlock code={code} language={language}/>

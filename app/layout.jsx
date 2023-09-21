@@ -23,7 +23,7 @@ const RootLayout = ( { children, session } ) => {
             <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
                 <NextTopLoader color='#a37cf0'/>
                 <Header/> 
-                <div className='container py-2 z-0 flex items-center justify-center'>
+                <div className='container py-2 z-0 flex justify-center'>
                     {children}
                 </div>
             </ThemeProvider>
